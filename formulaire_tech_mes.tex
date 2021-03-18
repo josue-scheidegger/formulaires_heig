@@ -1,0 +1,155 @@
+\documentclass[10pt, twocolumn]{article}
+\usepackage[landscape, a4paper, margin=2cm]{geometry}
+\usepackage{amsmath}
+
+\title{Formulaire TechMes}
+
+\begin{document}
+	
+	\begin{center}
+		{\Large \bf Formulaire TechMes} \\
+	\end{center}
+	
+	\section*{Généralités}
+		
+		\subsection*{Méthodes de mesure}
+		
+			\begin{itemize}
+				\item Par déviation
+				\item Par comparaison
+			\end{itemize}
+			
+		\subsection*{Unités fondamentales}
+			
+			\begin{enumerate}
+				\item Masse en kilogramme [kg]
+				\item Distance en mètre [m]
+				\item Temps en seconde [s]
+				\item Courant en ampère [A]
+				\item Température en kelvin [K]
+				\item Intensité lumineuse en candela [cd]
+				\item Quantité de matière en mole [mol]
+			\end{enumerate}
+			
+		\subsection*{Mesure d'une grandeur physique}
+			
+			\[G = g \pm \Delta g \; U \text{ à } x\% \text{ (ou }n-\sigma)\]
+			
+			\begin{itemize}
+				\item $G$: nom de variable (m, I, t)
+				\item $g$: valeur numérique
+				\item $\Delta g$: incertitude
+				\item $U$: unité
+				\item $x\%$: probabilité que la vraie valeur de $G$ soit comprise dans l'intervalle $[g-\Delta g;g+\Delta g]$
+				\item $n-\sigma$: intervalle de confiance
+			\end{itemize}
+			
+			Exemple: $m=12.3\cdot 10^{-6} \pm 0.5\cdot 10^{-6} \; g \text{ a } 95\%$
+			
+	\section*{Chaîne de mesure}
+	
+		\subsection*{Généralités}
+	
+			\begin{enumerate}
+				\item \emph{Mesurande:} grandeur non-électrique que l'on souhaite mesurer
+				\item \emph{Transducteur (capteur):} signaux analogiques
+				\item \emph{Conditionneur:} signaux continus dans le temps
+				\item \emph{Pré-traitement:} amplification, filtrage
+				\item \emph{Convertisseur A/N:} échantillonnage (discrétisation)
+					\begin{enumerate}
+						\item $x(t) \rightarrow$ Échantillonneur
+						\item $x[n] \rightarrow$ Quantificateur
+						\item Codeur $\rightarrow$ signal numérique
+					\end{enumerate}
+				\item \emph{Post-traitement et stockage des données}
+				\item \emph{Résultat}
+			\end{enumerate}
+		
+		\subsection*{Transducteurs: capteurs et actionneurs}
+			
+			\begin{description}
+				\item [Transducteur:] conversion d'une grandeur physique en une autre.
+				\item [Capteur:] conversion d'une grandeur physique en un signal électrique.
+				\item [Actionneur:] génère une grandeur physique depuis un signal électrique.
+				\item [Grandeurs d'influence:] grandeurs d'entrée non désirées du système.
+			\end{description}
+			
+			Grandeurs d'influence les plus courantes: 
+			
+			\begin{itemize}
+				\item Température
+				\item Tension d'alimentation
+				\item Temps
+				\item Humidité relative
+			\end{itemize}
+		
+		\subsection*{Problème de mesure}
+		
+			\[Y = F(X) \quad X_m=F^{-1}(Y)\]
+			
+			\begin{itemize}
+				\item $X$ : vraie valeur du mesurande (que l'on ne connaîtra jamais exactement)
+				\item $X_m$ : valeur mesurée; est une estimation de $X$
+				\item \emph{Validité des mesures:} degré de confiance que l'on peut accorder au résultat chiffré de la mesure.
+			\end{itemize}
+			
+			Causes d'erreurs:
+		
+			\begin{itemize}
+				\item modèle mathématique (non-conformité, non-linéarité)
+				\item effet des grandeurs d'influence (modification du comportement de la chaîne)
+				\item bruit interne (limite de détection)
+				\item perturbations provoquées par l'environnement externe (compatibilité électromagnétique)
+				\item effet de charge (échange d'énergie entre l'objet mesuré et la chaîne de mesure)
+			\end{itemize}
+			
+		\subsection*{Modèle mathématique}
+			
+			Modèle linéaire:
+			\[Y = G \cdot X + \text{Offset}\]
+			
+			Modèle polynomial:
+			\[Y=a_0+a_1\cdot X+a_2\cdot X^2+...+a_n\cdot X^n\]
+			\[X_{m}=c_{0}+c_{1} \cdot Y+c_{2} \cdot Y^{2}+\ldots+c_{n} \cdot Y^{n}\]
+		
+	\section*{Etalonnage, ajustage}
+		
+		\subsection*{Incertitudes}
+		\subsection*{Ajustage et étalonnage}
+		\subsection*{Compensation des erreurs systématiques}
+		\subsection*{Mesures répétées}
+			
+			Sensiblité:
+			\[K(M) = \frac{\partial C(M)}{\partial (M)}\]
+			
+			Fidélité d'un instrument:
+			\[F = \sqrt{(valeur\_etalon - valeur\_mesuree)^{2}}\]
+			
+			Justesse d'un instrument:
+			\[J [\%] = (1 - \frac{valeur\_etalon - valeur\_mesuree}{valeur\_etalon})\]
+				% Ajouter la valeur absolue
+			
+			Théorème de Shanon-Nyquist:
+			\[f_{e} \geq 2 \cdot f_{max}\]
+			
+			Quantum (résolution):
+			\[q = \frac{X_{PE}}{2^N}\]
+			\[X_{PE} = X_{max}-X_{min}\]
+			
+			Erreur de quantification:
+			\[-q/2 \leq e_q < q/2\]
+			
+			Fréquence de scrutation et de balayage:
+			\[f_{scan} \leq \frac{f_{scrut}}{N_{canaux}}\]
+			
+	\section*{Analyse de mesures}
+	\section*{Capteurs}
+	\section*{Lexique}
+	
+		\begin{description}
+		
+			\item [Résolution de mesure:] plus petite variation du mesurande que l'on peut détecter (1 quantum = 1 digit = 1 LSB)
+		\end{description}
+		
+		
+\end{document}

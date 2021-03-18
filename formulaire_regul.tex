@@ -1,0 +1,209 @@
+\documentclass[10pt, twocolumn]{article}
+\usepackage[landscape, a4paper, margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+%\usepackage{mathrsfs}
+
+\title{Formulaire - Regul}
+
+\begin{document}
+	\maketitle
+	
+	\section{Introduction}
+		
+		Régulateurs de base:
+		
+		\begin{itemize}
+			\item À action manuelle
+			\item À action à 2 positions (tout-ou-rien)
+			\item À action proportionnelle: $u(t) = K_p \cdot e(t)$
+				\begin{itemize}
+					\item gain statique (statisme)
+					\item instabilité si $K_p$ élevé
+				\end{itemize}
+		\end{itemize}
+		
+		Système de régulation automatique:\\
+		
+		% Img système régul
+		
+		Deux modes de régulation automatique:
+		
+		\begin{itemize}
+			\item Régulation de correspondance (but: suivre une consigne)
+			\item Régulation de maintien (but: maintenir une consigne malgré des perturbations)
+		\end{itemize}
+		
+		Problèmes fondamentaux des systèmes de régulation automatique:
+		
+		\begin{enumerate}
+			\item Stabilité
+			\item Précision et rapidité
+			\item Dilemme stabilité-précision
+		\end{enumerate}
+		
+		\subsection*{Types de systèmes}
+		
+			Gain statique:
+			\[K=\left.\frac{\lim _{t \rightarrow \infty} y(t)}{\lim _{t \rightarrow \infty} u(t)}\right|_{u(t)=\text { const. }}=\left.\frac{y_{\infty}}{u_{\infty}}\right|_{u(t)=\text { const. }} = \frac{\lim _{s \rightarrow 0} s \cdot Y(s)}{\lim _{s \rightarrow 0} s \cdot U(s)}\]
+			
+			\begin{itemize}
+				\item Système statique: ne dépend que de l'entrée
+				\item Système dynamique: dépend de l'entrée présente mais aussi des entrées (sorties) passées
+				\item Système linéaire: si obéit au principe de superposition
+			\end{itemize}
+			
+			Dans ce cours: systèmes linéaires, dynamiques, à constantes localisées.
+	
+	\section*{Modélisation}
+		
+		Réponses indicielles typiques:
+		
+		\begin{itemize}
+			\item Système à retard pur
+			\item Systèmes à modes apériodiques (sans oscillations)
+			\item Systèmes à modes oscillatoires et systèmes à déphasage non-minimal (ou «vicieux»)
+			\item Systèmes à comportement intégrateur ou dérivateur
+		\end{itemize}
+		
+		Éléments d'un schéma fonctionnel:
+		
+		\begin{itemize}
+			\item Gains
+			\item Comparateurs
+			\item Intégrateurs
+		\end{itemize}
+		
+		\subsection*{Par équations différentielles}
+			Système linéaire dynamique peut être modélisé par:
+			
+				\begin{itemize}
+					\item une équation d'ordre n
+					\item n équations différentielles d'ordre 1 (forme canonique: dérivée première dans le membre de gauche)
+				\end{itemize}
+		
+		\subsection*{Par réponse impulsionnelle}
+		
+			\[y(t)=\int_{-\infty}^{t} g(t-\tau) \cdot u(\tau) \cdot d \tau=g(t) * u(t)\]
+			
+			avec $g(t)$ : réponse impulsionnelle (de Dirac) du système
+		
+		\subsection*{Par la fonction de transfert}
+		
+			Définition:
+			
+			%\[G(s)=\mathscr{L}\{g(t)\}\]
+			\[y(t)=g(t) * u(t) \longrightarrow Y(s)=G(s) \cdot U(s)\]
+			
+			Forme générale:
+			
+			\[G(s)=\frac{Y(s)}{U(s)}=\frac{b_{m} \cdot s^{m}+b_{m-1} \cdot s^{m-1}+\ldots+b_{1} \cdot s+b_{0}}{a_{n} \cdot s^{n}+a_{n-1} \cdot s^{n-1}+\ldots+a_{1} \cdot s+a_{0}}\]
+			
+			Forme de Bode:\\
+			Coefficients des plus \emph{basses} puissances de $s$ unitaires
+			
+			\[G(s)=\frac{Y(s)}{U(s)}=\frac{b_{0}}{a_{0}} \cdot \frac{1+\frac{b_{1}}{b_{0}} \cdot s+\frac{b_{2}}{b_{0}} \cdot s^{2}+\ldots+\frac{b_{m}}{b_{0}} \cdot s^{m}}{1+\frac{a_{1}}{a_{0}} \cdot s+\frac{a_{2}}{a_{0}} \cdot s^{2}+\ldots+\frac{a_{n}}{a_{0}} \cdot s^{n}}\]
+			
+			Forme de Bode factorisée:
+			
+			\[G(s)=\frac{Y(s)}{U(s)}=K \cdot \frac{\left(1+s \cdot \tau_{1}^{*}\right) \cdot\left(1+s \cdot \tau_{2}^{*}\right) \cdot \ldots \cdot\left(1+s \cdot \tau_{m}^{*}\right)}{\left(1+s \cdot \tau_{1}\right) \cdot\left(1+\frac{2 \cdot \zeta}{\omega_{n}} \cdot s+\frac{1}{\omega_{n}^{2}} \cdot s^{2}\right) \cdot \ldots\left(1+s \cdot \tau_{n}\right)}\]
+			
+			Forme de Laplace: \\ 
+			Coefficients des plus \emph{hautes} puissances de $s$ unitaires
+			
+			\[G(s)=\frac{Y(s)}{U(s)}=\frac{b_{m}}{a_{n}} \cdot \frac{s^{m}+\frac{b_{m-1}}{b_{m}} \cdot s^{m-1}+\ldots+\frac{b_{0}}{b_{m}}}{s^{n}+\frac{a_{n-1}}{a_{n}} \cdot s^{n-1}+\ldots+\frac{a_{0}}{a_{n}}}\]
+			
+			Forme de Laplace factorisée:
+			
+			\[G(s)=\frac{Y(s)}{U(s)}=\frac{b_{m}}{a_{n}} \cdot \frac{\left(s-z_{1}\right) \cdot\left(s-z_{2}\right) \cdot \ldots \cdot\left(s-z_{m}\right)}{\left(s-s_{1}\right) \cdot\left(s-s_{2}\right) \cdot \ldots \cdot\left(s-s_{n}\right)}\]
+			
+			\begin{itemize}
+				\item $n$: nombre de pôles (réels ou complexes) $\rightarrow$ ordre du système
+				\item $m$: nombre de zéros (réels ou complexes)
+				\item $d=n-m$: degré relatif
+				\item Type $\alpha$: nombre de pôles à $s=0$ (intégrateurs purs)
+			\end{itemize}
+			
+			Système à retard pur: $ L{\{u(t-T_r)\}} = U(s) \cdot e^{-s\cdot T_r}$ \\
+			
+			MatLab:
+			
+			\begin{itemize}
+				\item $numG$, $denomG$: vecteurs des coefficients de $s$ (ordre décroissant)
+				\item $G = tf(numG, denomG)$: objet «fonction de transfert»
+				\item $step(G)$: fonction saut indiciel
+			\end{itemize}
+		
+		\subsection*{Systèmes fondamentaux}
+			
+			Système fondamental si:
+			
+				\begin{itemize}
+					\item Si d'ordre 1 ou 2 à pôles complexes
+					\item Type $\alpha = 0$
+					\item N'a pas de zéro $\rightarrow$ Gain statique K infini
+				\end{itemize}
+				
+			\subsubsection*{Système fondamental d'ordre 1}
+			
+				Forme:
+				\[G(s)=\frac{Y(s)}{U(s)}=\frac{K}{1+s \cdot \tau}=\frac{K}{\tau} \cdot \frac{1}{s+\frac{1}{\tau}}=\frac{k}{s-s_{1}}\]
+				
+				Équation différentielle:
+				\[\tau \cdot \frac{d y}{d t}+y(t)=K \cdot u(t)\]
+				
+				Réponse à une impulsion de Dirac:
+				\[g(t) = k \cdot e^{-t/\tau}\]
+				
+				Réponse à un saut indiciel:
+				\[\gamma(t) = K \cdot (1-e^{-t/\tau} \cdot \epsilon (t)\]
+				
+				Mode temporel: $e^{s_1 \cdot t} \cdot \epsilon (t)$
+				
+			\subsubsection*{Système fondamental d'ordre 2}
+				
+				\[G(s)=\frac{Y(s)}{U(s)} =\frac{b_{0}}{a_{2} \cdot s^{2}+a_{1} \cdot s+a_{0}}=\frac{k}{(s-s_{1}) \cdot(s-s_{2})}\]
+				\[s_{1,2}=-\delta \pm j \cdot \omega_{0}\]
+				
+				Forme de Laplace:
+				\[G(s) = \frac{k}{(s+\delta)^{2}+\omega_{0}^{2}}\ \quad k=\frac{b_0}{a_2}\]
+				
+				Forme de Bode:
+				\[G(s)=\frac{K}{1+\frac{2 \cdot \zeta}{\omega_{n}} \cdot s+\frac{1}{\omega_{n}^{2}} \cdot s^{2}} \quad K = \frac{b_0}{a_0}\]
+				
+				Réponse à une impulsion de Dirac:
+				\[g(t)=\frac{k}{\omega_{0}} \cdot e^{-\delta \cdot t} \cdot \sin \left(\omega_{0} \cdot t\right) \cdot \epsilon(t)\]
+				
+				Réponse à une impulsion unité:
+				
+				\begin{itemize}
+					\item Taux d'amortissement $\zeta$: détermine le nombre d'oscillations (mais n'est pas égal à...) de la réponse temporelle avant la stabilisation.
+					\item Pulsation propre non-amortie $\omega _n$: pulsation de résonnance de phase.
+					\item Pulsation propre du régime libre $\omega _0$: $\omega _0 = \omega _n \cdot \sqrt{1-\zeta ^2}$
+					\item Facteur d'amortissement $\delta$: rapidité avec laquelle le régime transitoire s'atténue ($sin (\omega _0 \cdot t)$ est pondéré par $e^{-\delta \cdot t}$)
+					\item Pulsation de résonance: $\omega _r = \omega _n \cdot \sqrt{1-2\cdot\sigma^2}$
+				\end{itemize}
+				
+				
+		\subsection*{Pôles dominants}
+			
+			Pôle(s) le(s) plus proche(s) de 0 sur l'axe des réels. Permet une simplification des calculs.
+			
+	\section*{Réponse fréquentielle}
+		
+		\paragraph{Diagramme de Bode}
+		
+		\paragraph{Systèmes à retard pur}
+	
+	\section*{Schémas fonctionnels}
+	
+	\section*{Stabilité}
+	
+	\section*{Régulateur PID}
+	
+	\section*{Performance}
+	
+	\section*{Synthèse fréquentielle}
+	
+\end{document}

@@ -1,0 +1,217 @@
+\documentclass[12pt, twocolumn]{article}
+\usepackage[landscape, a4paper, margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+
+\title{MotComand - Formulaire}
+
+\begin{document}
+	\maketitle
+	
+		\section*{Mouvement dans les machines}
+		
+			\subsection*{Actionneurs et moteurs}
+	
+				\begin{itemize}
+					\item \emph{Actionneurs et moteurs pneumatiques:} économiques, faible coûts d'entretien, conviennent aux milieux hostiles, vitesses élevées; temps de réaction < 20ms, bruit, positions limitées (tout-ou-rien).
+					\item \emph{Actionneurs et moteurs hydrauliques:} performants, haute densité d'énergie, réglage en vitesse ou en position; coûteux, entretien plus compliqué (huile), temps de réponse d'environ 2ms.
+					\item \emph{Moteurs électriques:} économiques, beaucoup de fournisseurs, faciles à mettre en oeuvre, temps de réponse de 0.1ms; nécessitent en général des réducteurs.
+				\end{itemize}
+				
+				Comparaison:
+				
+				\begin{figure}[H]
+					\includegraphics[width=8cm]{img/comparaison_actionneurs.png}
+					\centering
+				\end{figure}
+			
+			\subsection*{Constitution des entraînements}
+				
+				\begin{figure}[H]
+					\includegraphics[width=8cm]{img/constitution_entrainements.png}
+					\centering
+				\end{figure}
+				
+			\subsection*{Charges}
+				
+				Lois de Newton:
+				\[a = \frac{\sum F}{m}\]
+				
+				\begin{itemize}
+					\item a : accélération $[m/s^2]$
+					\item F : forces $[N]$
+					\item m : masse $[kg]$
+				\end{itemize}
+		
+				\[\alpha = \frac{\sum T}{J} \]
+		
+				\begin{itemize} 
+					\item $\alpha$ : accélération angulaire $[rad/s^2]$
+					\item T : couples $[N \cdot m]$
+					\item J : inertie $[kg \cdot m^2]$
+				\end{itemize}
+		
+				Inertie d'un cylindre:
+				
+				\[ J = \frac{m \cdot R^2}{2} = \frac{\rho \cdot L \cdot \pi \cdot R^4}{2} \]
+				
+				Quadrants de fonctionnement:
+				
+				\begin{table}[h!]
+				\begin{tabular}{|c|c|c|l|}
+				\hline
+					& $\omega$ & $T_{em}$ & Mode   \\ \hline
+				1 & +        & +        & Moteur \\ \hline
+				2 & -        & +        & Frein  \\ \hline
+				3 & -        & -        & Moteur \\ \hline
+				4 & +        & -        & Frein  \\ \hline
+				\end{tabular}
+				\centering
+				\end{table}
+				
+				Types de charge:
+				
+				\begin{itemize}
+					\item Charge à couple constant
+					\item Charge à couple croissant avec la vitesse
+					\item Charge à puissance constante: $P(t)=T(t) \cdot \omega(t)=[F \cdot r(t)] \cdot\left[\frac{V}{r(t)}\right]=F \cdot V=$ constante (avec F et V, respectivement force et vitesse tangentielles)
+				\end{itemize}
+				
+				Régimes de fonctionnement:
+				
+				\[T_{moteur}(t) - T_{resistant}(t) = T_{accel.}(t) \]
+				\[T_{resistant}(t) = T_{frott.}(t) + T_{utile}(t) \]
+				
+				\begin{itemize}
+					\item \emph{Régime permanent:} la charge tourne à vitesse (quasi) constante
+					\item \emph{Régime impulsionnel ou intermittent:} la charge est constamment accélérée et freinée
+				\end{itemize}
+	
+			\subsection*{Modes de fonctionnement}
+	
+				\begin{itemize}
+					\item \emph{Mode tout-ou-rien:} le plus simple et le plus bon marché; pas d'adaptation à la charge entraînée.
+					\item \emph{Mode contrôlé en boucle ouverte:} contrôle approximatif de la vitesse et de l'effort fournis.
+					\item \emph{Mode contrôlé en «boucle fermée»:} grande précision; plus complexe et coûteux.
+					\item \emph{Mode servomoteur - réglé en position:} permet de contrôler tous les mouvements d'une machine; complexes et coûteux.
+					\item \emph{Mode pas-à-pas:} simple et bon marché; limité en puissance (~200W) et vitesse (~1000tr/min).
+				\end{itemize}
+	
+		
+	
+			\subsection*{Modèle thermique des moteurs}
+	
+				\[\Delta T = R_{th} \cdot P_{moy} \]
+				\[P_c = C_{th} \cdot \frac{dT}{dt} \]
+				\[T(t) = (T_{max} - T_0) \cdot (1 - e^{-t/\tau_{th}}) + T_0 \]
+
+				Comparaison thermique-électricité:
+	
+				\begin{itemize}
+					\item Courant électrique [A] = puissance thermique [W]
+					\item Tension électrique [V] = température [°C]
+					\item Capacité électrique = capacité thermique
+				\end{itemize}
+	
+	\section*{Réducteurs}
+		
+		Types de réducteurs:
+		
+		\begin{itemize}
+			\item réducteurs rotatifs-rotatifs (le moteur et la charge sont rotatifs)
+			\item réducteurs rotatifs-linéaire (le moteur est rotatif et la charge est linéaire)
+		\end{itemize}
+	
+		\subsection*{Réducteurs rotatif-rotatif}
+		
+		
+			\[i = \frac{\omega_M}{\omega_L} = \frac{Z_L}{Z_M} = \frac{\Delta \theta_M}{\Delta \theta_L} \]
+		
+			\begin{itemize}
+				\item i: rapport de réduction
+				\item $\omega_M$, $\omega_L$ : vitesses du moteur, respectivement de la charge
+				\item $Z_M$, $Z_L$ nombres de dents des pignons côté moteur, respectivement côté charge
+			\end{itemize}
+		
+		\subsubsection*{Rendement}
+		
+			\[\eta = \frac{P_{utile}}{P_{fournie}} \leq 1.00 \]
+			\[P_M = \omega_M \cdot T_M,\; P_L= \omega_L \cdot T_L \]
+			
+			En régime moteur:
+			\[\eta_{M \rightarrow L} = \frac{P_L}{P_M} \]
+			\[i = \frac{T_L}{\eta_{M \rightarrow L} \cdot T_M} \]
+			
+			En régime générateur / frein:
+			\[\eta_{L \rightarrow M} = \frac{P_M}{P_L} \]
+			\[i = \frac{\eta_{L \rightarrow M} \cdot T_L}{T_M} \]
+		
+		\subsection*{Réducteurs rotatifs-linéaires}
+		
+			\[i = \frac{\omega_M}{v_L} = \frac{2 \cdot \pi}{Z_M \cdot p} \]
+			\[v_L = r \cdot \omega_M \]
+			\[P_L = v_L \cdot F_L \]
+			
+			En régime moteur:
+			\[i = \frac{F_L}{\eta_{M \rightarrow L} \cdot T_M} \]
+			
+			En régime générateur / frein:
+			\[i = \frac{\eta_{L \rightarrow M} \cdot F_L}{T_M} \]
+			
+			
+			Pour un treuil:
+			\[v_L = r \cdot \omega_M \]
+
+		\subsection*{Choix du rapport de réduction - Régime permanent}
+	
+			Contrainte de vitesse:
+			\[i<i_{\max }=\frac{\omega_{M-l i m}}{\omega_{L-\max }} \text{ respectivement } i<i_{\max }=\frac{\omega_{M-l i m}}{v_{L-\max }}\]
+			
+			Contrainte de couple en régime «moteur»:
+			\[i>i_{\min }=\frac{T_{L-\max }}{T_{M-n o m}} \cdot \frac{1}{\eta} \text{ respectivement } i>i_{\min }=\frac{F_{L-\max }}{T_{M-n o m}} \cdot \frac{1}{\eta}\left[\mathrm{m}^{-1}\right]\]
+			
+			Contrainte de couple en régime générateur/frein:
+			\[i>i_{\min }=\frac{T_{L-\max }}{T_{M-n o m}} \cdot \eta \text{ respectivement } i>i_{\min }=\frac{F_{L-m a x}}{T_{M-n o m}} \eta\left[\mathrm{m}^{-1}\right]\]
+		
+		\subsection*{Choix du rapport de réduction - Régime impulsionnel}
+		
+			\[\left.J_{L-equiv}\right|_{M}=J_{L} \cdot\left(\frac{1}{i}\right)^{2}=J_{L} \cdot\left(\frac{Z_{M}}{Z_{L}}\right)^{2}\left[\mathrm{kgm}^{2}\right]\]
+			\[\left.J_{L-equiv}\right|_{M}=m_{L} \cdot\left(\frac{1}{i}\right)^{2}=m_{L} \cdot\left(\frac{Z_{M} \cdot p}{2 \cdot \pi}\right)^{2}\left[\mathrm{kgm}^{2}\right]\]
+			\[\left.T_{a c c}\right|_{M}=\alpha_{M} \cdot \sum J=\alpha_{M} \cdot\left(J_{M}+\left.J_{L-equiv}\right|_{M}\right)\]
+			
+			Pour un réducteur rotatif-rotatif:
+			\[i_{o p t}=\sqrt{\frac{J_{L}}{J_{M}}} \quad \text { (sans dimension) }\]
+			
+			Pour un réducteur rotatif-linéaire:
+			\[i_{o p t}=\sqrt{\frac{m_{L}}{J_{M}}} \quad\left[\mathrm{~m}^{-1}\right]\]
+
+	\section*{Moteurs DC}
+		
+		\[T_{e m}=k_{T} \cdot I_{a}\]
+		\[U_{i}=k_{E} \cdot \omega\]
+		\[U_{a}=R_{a} \cdot I_{a}+U_{i}=R_{a} \cdot I_{a}+k_{\varepsilon} \cdot \omega\]
+		\[\frac{U_{i}}{T_{e m}}=\frac{k_{E} \cdot \omega}{k_{T} \cdot I_{a}} \Rightarrow \frac{U_{i} \cdot I_{a}}{T_{e m} \cdot \omega}=\frac{k_{E}}{k_{T}}\]
+		\[k_{T}=k_{E}\]
+		\[T_{e m}(t)-\underbrace{\left[T_{\text {frott }-M}(t)+T_{\text {frott }-L}(t)+T_{\text {utile }}(t)\right]}_{T_{\text {res }}(t)}=T_{a c c}(t)\]
+		\[\underbrace{T_{e m}(t)-T_{r é s}(t)}_{T_{a c}(t)}=J_{t o t a l} \cdot \frac{d \omega(t)}{\frac{d t}{\alpha(t)}}\]
+		\[P_{\text {arbre }}(t)=T_{\text {arbre }}(t) \cdot \omega(t)\]
+		
+		En mode moteur:
+		\[\eta=\frac{P_{\text {utile }}(t)}{P_{\text {faurnie }}(t)}=\frac{P_{\text {arbre }}(t)}{P_{\text {élec }}(t)}\]
+		
+		En mode génératrice:
+		\[\eta=\frac{P_{\text {utile }}(t)}{P_{\text {fournie }}(t)}=\frac{P_{\text {élec }}(t)}{P_{\text {arbre }}(t)}\]
+		
+		Pertes électriques:
+		\[P_{\text {Joule }}(t)=R_{a} \cdot i_{a}^{2}(t)\]
+		
+		Pertes par frottement:
+		\[P_{\text {frott }}(t)=T_{\text {frott. }}(t) \cdot \omega(t)\]
+		
+		Puissance électromagnétique:
+		\[P_{e m}(t)=P_{\text {élec }}(t)-P_{\text {Joule }}(t)=P_{\text {arbre }}(t)+P_{\text {frott }}(t)\]
+\end{document}
