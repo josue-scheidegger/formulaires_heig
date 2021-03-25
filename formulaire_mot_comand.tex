@@ -1,4 +1,4 @@
-\documentclass[12pt, twocolumn]{article}
+\documentclass[10pt]{article} %twocolumn
 \usepackage[landscape, a4paper, margin=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -6,12 +6,14 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{amsmath}
+\usepackage{multicol}
 
-\title{MotComand - Formulaire}
+\title{Formulaire MotComand}
 
 \begin{document}
-	\maketitle
 	
+	\begin{multicols}{3}
+		\maketitle
 		\section*{Mouvement dans les machines}
 		
 			\subsection*{Actionneurs et moteurs}
@@ -61,7 +63,7 @@
 				
 				Quadrants de fonctionnement:
 				
-				\begin{table}[h!]
+				\begin{table}[H]
 				\begin{tabular}{|c|c|c|l|}
 				\hline
 					& $\omega$ & $T_{em}$ & Mode   \\ \hline
@@ -78,7 +80,8 @@
 				\begin{itemize}
 					\item Charge à couple constant
 					\item Charge à couple croissant avec la vitesse
-					\item Charge à puissance constante: $P(t)=T(t) \cdot \omega(t)=[F \cdot r(t)] \cdot\left[\frac{V}{r(t)}\right]=F \cdot V=$ constante (avec F et V, respectivement force et vitesse tangentielles)
+					\item Charge à puissance constante:
+					\item [] $P(t)=T(t) \cdot \omega(t)=[F \cdot r(t)] \cdot\left[\frac{V}{r(t)}\right]=F \cdot V=$ cste (avec F et V, respectivement force et vitesse tangentielles)
 				\end{itemize}
 				
 				Régimes de fonctionnement:
@@ -112,9 +115,9 @@
 				Comparaison thermique-électricité:
 	
 				\begin{itemize}
-					\item Courant électrique [A] = puissance thermique [W]
-					\item Tension électrique [V] = température [°C]
-					\item Capacité électrique = capacité thermique
+					\item Courant électrique [A] = Puissance thermique [W]
+					\item Tension électrique [V] = Température [°C]
+					\item Capacité électrique = Capacité thermique
 				\end{itemize}
 	
 	\section*{Réducteurs}
@@ -129,7 +132,7 @@
 		\subsection*{Réducteurs rotatif-rotatif}
 		
 		
-			\[i = \frac{\omega_M}{\omega_L} = \frac{Z_L}{Z_M} = \frac{\Delta \theta_M}{\Delta \theta_L} \]
+			\[i = \frac{\omega_M}{\omega_L} = \frac{Z_L}{Z_M} = \frac{\Delta \theta_M}{\Delta \theta_L} = \frac{\alpha_M}{\alpha_L} \]
 		
 			\begin{itemize}
 				\item i: rapport de réduction
@@ -162,56 +165,124 @@
 			En régime générateur / frein:
 			\[i = \frac{\eta_{L \rightarrow M} \cdot F_L}{T_M} \]
 			
-			
 			Pour un treuil:
 			\[v_L = r \cdot \omega_M \]
 
 		\subsection*{Choix du rapport de réduction - Régime permanent}
 	
 			Contrainte de vitesse:
-			\[i<i_{\max }=\frac{\omega_{M-l i m}}{\omega_{L-\max }} \text{ respectivement } i<i_{\max }=\frac{\omega_{M-l i m}}{v_{L-\max }}\]
+			\[i<i_{\max }=\frac{\omega_{M-l i m}}{\omega_{L-\max }} \text{ resp. } i<i_{\max }=\frac{\omega_{M-l i m}}{v_{L-\max }}\]
 			
 			Contrainte de couple en régime «moteur»:
-			\[i>i_{\min }=\frac{T_{L-\max }}{T_{M-n o m}} \cdot \frac{1}{\eta} \text{ respectivement } i>i_{\min }=\frac{F_{L-\max }}{T_{M-n o m}} \cdot \frac{1}{\eta}\left[\mathrm{m}^{-1}\right]\]
+			\[i>i_{\min }=\frac{T_{L-\max }}{T_{M-n o m}} \cdot \frac{1}{\eta} \text{ resp. } i>i_{\min }=\frac{F_{L-\max }}{T_{M-n o m}} \cdot \frac{1}{\eta}\left[\mathrm{m}^{-1}\right]\]
 			
 			Contrainte de couple en régime générateur/frein:
-			\[i>i_{\min }=\frac{T_{L-\max }}{T_{M-n o m}} \cdot \eta \text{ respectivement } i>i_{\min }=\frac{F_{L-m a x}}{T_{M-n o m}} \eta\left[\mathrm{m}^{-1}\right]\]
+			\[i>i_{\min }=\frac{T_{L-\max }}{T_{M-n o m}} \cdot \eta \text{ resp. } i>i_{\min }=\frac{F_{L-m a x}}{T_{M-n o m}} \eta\left[\mathrm{m}^{-1}\right]\]
 		
 		\subsection*{Choix du rapport de réduction - Régime impulsionnel}
-		
-			\[\left.J_{L-equiv}\right|_{M}=J_{L} \cdot\left(\frac{1}{i}\right)^{2}=J_{L} \cdot\left(\frac{Z_{M}}{Z_{L}}\right)^{2}\left[\mathrm{kgm}^{2}\right]\]
-			\[\left.J_{L-equiv}\right|_{M}=m_{L} \cdot\left(\frac{1}{i}\right)^{2}=m_{L} \cdot\left(\frac{Z_{M} \cdot p}{2 \cdot \pi}\right)^{2}\left[\mathrm{kgm}^{2}\right]\]
+			
+			Couple nécessaire pour accélérer le moteur+charge:
+			
 			\[\left.T_{a c c}\right|_{M}=\alpha_{M} \cdot \sum J=\alpha_{M} \cdot\left(J_{M}+\left.J_{L-equiv}\right|_{M}\right)\]
 			
 			Pour un réducteur rotatif-rotatif:
+			\[\left.J_{L-equiv}\right|_{M}=J_{L} \cdot\left(\frac{1}{i}\right)^{2}=J_{L} \cdot\left(\frac{Z_{M}}{Z_{L}}\right)^{2}\left[\mathrm{kgm}^{2}\right]\]
 			\[i_{o p t}=\sqrt{\frac{J_{L}}{J_{M}}} \quad \text { (sans dimension) }\]
 			
 			Pour un réducteur rotatif-linéaire:
+			\[\left.J_{L-equiv}\right|_{M}=m_{L} \cdot\left(\frac{1}{i}\right)^{2}=m_{L} \cdot\left(\frac{Z_{M} \cdot p}{2 \cdot \pi}\right)^{2}\left[\mathrm{kgm}^{2}\right]\]
 			\[i_{o p t}=\sqrt{\frac{m_{L}}{J_{M}}} \quad\left[\mathrm{~m}^{-1}\right]\]
 
-	\section*{Moteurs DC}
+	\section*{Moteurs électriques}
+	
+		\subsection*{Moteurs à courant continu (DC)}
 		
-		\[T_{e m}=k_{T} \cdot I_{a}\]
-		\[U_{i}=k_{E} \cdot \omega\]
-		\[U_{a}=R_{a} \cdot I_{a}+U_{i}=R_{a} \cdot I_{a}+k_{\varepsilon} \cdot \omega\]
-		\[\frac{U_{i}}{T_{e m}}=\frac{k_{E} \cdot \omega}{k_{T} \cdot I_{a}} \Rightarrow \frac{U_{i} \cdot I_{a}}{T_{e m} \cdot \omega}=\frac{k_{E}}{k_{T}}\]
-		\[k_{T}=k_{E}\]
-		\[T_{e m}(t)-\underbrace{\left[T_{\text {frott }-M}(t)+T_{\text {frott }-L}(t)+T_{\text {utile }}(t)\right]}_{T_{\text {res }}(t)}=T_{a c c}(t)\]
-		\[\underbrace{T_{e m}(t)-T_{r é s}(t)}_{T_{a c}(t)}=J_{t o t a l} \cdot \frac{d \omega(t)}{\frac{d t}{\alpha(t)}}\]
-		\[P_{\text {arbre }}(t)=T_{\text {arbre }}(t) \cdot \omega(t)\]
-		
-		En mode moteur:
-		\[\eta=\frac{P_{\text {utile }}(t)}{P_{\text {faurnie }}(t)}=\frac{P_{\text {arbre }}(t)}{P_{\text {élec }}(t)}\]
-		
-		En mode génératrice:
-		\[\eta=\frac{P_{\text {utile }}(t)}{P_{\text {fournie }}(t)}=\frac{P_{\text {élec }}(t)}{P_{\text {arbre }}(t)}\]
-		
-		Pertes électriques:
-		\[P_{\text {Joule }}(t)=R_{a} \cdot i_{a}^{2}(t)\]
-		
-		Pertes par frottement:
-		\[P_{\text {frott }}(t)=T_{\text {frott. }}(t) \cdot \omega(t)\]
-		
-		Puissance électromagnétique:
-		\[P_{e m}(t)=P_{\text {élec }}(t)-P_{\text {Joule }}(t)=P_{\text {arbre }}(t)+P_{\text {frott }}(t)\]
+			\subsubsection*{Équation de conversion e.m.}
+			
+				Constante de couple $k_T$:
+				\[T_{e m}=k_{T} \cdot I_{a}\]
+				
+				Constante de vitesse $k_E$:
+				\[U_{i}=k_{E} \cdot \omega\]
+				
+				En négligeant les pertes:
+				\[k_{T}=k_{E}\]
+			
+			\subsubsection*{Équation électrique}
+			
+				Cas général:
+			
+				\[u_{0}(t)=\underbrace{\left(R_{a}+R_{i}\right)}_{R_{\text {total }}} \cdot i_{a}(t)+\underbrace{\left(L_{a}+L_{i}\right)}_{L_{\text {total }}} \cdot \frac{d i_{a}(t)}{d t}+u_{i}(t)\]
+				
+				En négligeant l'effet de l'entrée:
+				
+				\[u_{a}(t)=R_{a} \cdot i_{a}(t)+L_{a} \cdot \frac{d i_{a}(t)}{d t}+u_{i}(t)\]
+				
+				\begin{figure}[H]
+					\includegraphics[width=8cm]{img/modele_moteur_dc.png}
+					\centering
+				\end{figure}
+				
+				En régime permanent:
+				
+				\[U_{a}=R_{a} \cdot I_{a}+U_{i}=R_{a} \cdot I_{a}+k_{\varepsilon} \cdot \omega\]
+				\[\frac{U_{i}}{T_{e m}}=\frac{k_{E} \cdot \omega}{k_{T} \cdot I_{a}} \Rightarrow \frac{U_{i} \cdot I_{a}}{T_{e m} \cdot \omega}=\frac{k_{E}}{k_{T}}\]
+				
+			\subsubsection*{Équation cinématique}
+				
+				\[T_{e m}(t)-\underbrace{\left[T_{\text {frott }-M}(t)+T_{\text {frott }-L}(t)+T_{\text {utile }}(t)\right]}_{T_{\text {res }}(t)}=T_{a c c}(t)\]
+				\[\underbrace{T_{e m}(t)-T_{r é s}(t)}_{T_{a c}(t)}=J_{t o t a l} \cdot \frac{d \omega(t)}{\frac{d t}{\alpha(t)}}\]
+				\[J_{\text {total }}=J_{M}+J_{L \text { -équiv }} \mid\]
+				
+			\subsubsection*{Puissance et rendement}
+				
+				Puissance mécanique:
+				
+				\[P_{\text {arbre }}(t)=T_{\text {arbre }}(t) \cdot \omega(t)\]
+				
+				Puissance électrique:
+				\[P_{\text {élec }}(t)=u_{a}(t) \cdot i_{a}(t)\]
+				
+				En mode moteur:
+				\[\eta=\frac{P_{\text {utile }}(t)}{P_{\text {faurnie }}(t)}=\frac{P_{\text {arbre }}(t)}{P_{\text {élec }}(t)}\]
+				
+				En mode génératrice:
+				\[\eta=\frac{P_{\text {utile }}(t)}{P_{\text {fournie }}(t)}=\frac{P_{\text {élec }}(t)}{P_{\text {arbre }}(t)}\]
+				
+				Pertes électriques:
+				\[P_{\text {Joule }}(t)=R_{a} \cdot i_{a}^{2}(t)\]
+				
+				Pertes mécaniques:
+				\[P_{\text {frott }}(t)=T_{\text {frott. }}(t) \cdot \omega(t)\]
+				
+				Puissance électromagnétique:
+				\[P_{e m}(t)=P_{\text {élec }}(t)-P_{\text {Joule }}(t)=P_{\text {arbre }}(t)+P_{\text {frott }}(t)\]
+			
+			
+			
+			
+			\subsubsection*{Comportement dynamique des moteurs DC}
+			
+				Avec $T_{rest}$ nulle:
+				
+				\[\frac{L_{a}}{R_{a}} \cdot \frac{R_{a} \cdot J_{t o t a l}}{k_{T} \cdot k_{E}} \cdot \frac{d^{2} \omega(t)}{d t^{2}}+\frac{R_{a} \cdot J_{t o t a l}}{k_{T} \cdot k_{E}} \cdot \frac{d \omega(t)}{d t}+\omega(t)-\frac{U_{a}}{k_{E}}=0\]
+				
+				\[\tau_{é l} \cdot \tau_{m é c} \cdot \frac{d^{2} \omega(t)}{d t^{2}}+\tau_{m é c} \cdot \frac{d \omega(t)}{d t}+\omega(t)-\frac{U_{a}}{k_{E}}=0\]
+				
+				Constante de temps électrique:
+				\[\tau_{é l}=\frac{L_{a}}{R_{a}}\]
+				
+				Constante de temps électrique en prenant en compte l'alimentation:
+				\[\tau_{é l}=\frac{L_{t o t a l}}{R_{t o t a l}}=\frac{L_{a}+L_{i}}{R_{a}+R_{i}}\]
+				
+				Constante de temps mécanique:
+				\[\tau_{m é c}=\frac{R_{a} \cdot J_{t o t a l}}{k_{T} \cdot k_{E}}\]
+				
+			\subsubsection*{Variantes d'excitation des moteurs DC}
+				
+				Moteur à excitation séparée:
+				
+				\[T_{e m}(t)=\left[k \cdot i_{e}(t)\right] \cdot i_{a}(t)\]
+				\[u_{i}(t)=\left[k \cdot i_{e}(t)\right] \cdot \omega(t)\]
+	\end{multicols}
 \end{document}

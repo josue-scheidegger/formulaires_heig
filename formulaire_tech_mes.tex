@@ -113,9 +113,43 @@
 			\[X_{m}=c_{0}+c_{1} \cdot Y+c_{2} \cdot Y^{2}+\ldots+c_{n} \cdot Y^{n}\]
 		
 	\section*{Etalonnage, ajustage}
-		
 		\subsection*{Incertitudes}
+		
 		\subsection*{Ajustage et étalonnage}
+			
+			\begin{description}
+				\item [Ajustage:] modifier le comportement => meilleure réponse possible (la plus proche des valeurs nominales).
+				\item [Étalonnage:] déterminer les erreurs actuelles.
+			\end{description}
+			
+			\subsubsection{Incertitudes résiduelles d'ajustage}
+			
+				Calcul du gain:
+				\[G_{n}=\frac{Y_{\max }-Y_{o}}{X_{\max }-X_{o}}\]
+				
+				Incertitude de décalage:
+				\[D_{c}=\Delta X_{o}+\mid \frac{\Delta Y_{0}}{G_{n}}\]
+				
+				Incertitude de gain:
+				\[\alpha_{c}=\frac{D_{c}+\Delta X_{\max }+\left|\frac{\Delta Y \max }{G_{n}}\right|}{X_{\max }-X_{o}}\]
+			
+			\subsection{Comparer les modèles actuels et nominals}
+			
+				Erreur de gain:
+				\[\alpha=\frac{G_{r}-G_{n}}{G_{n}}\]
+				
+				Erreur de décalage:
+				\[D=\frac{O f_{r}-O f_{n}}{G_{n}}\]
+			
+			\subsection{Non-linéarité}
+			
+			Écart entre la courbe et le modèle réel:
+			\[\Delta \mathrm{i}=\mathrm{Yi}-(\mathrm{GrXi}+\mathrm{Ofr})\]
+			\[\delta \mathrm{i}=\mathrm{Xi}-(\mathrm{Yi}-\mathrm{Ofr}) / \mathrm{Gr}\]
+			
+			Spécification d'incertitude:
+			\[\mathrm{NL}=\max \{|\Delta \mathrm{i}| / \mathrm{Gr}\}=\max \{|\delta \mathrm{i}|\}\]
+			
 		\subsection*{Compensation des erreurs systématiques}
 		\subsection*{Mesures répétées}
 			

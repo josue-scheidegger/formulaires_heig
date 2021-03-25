@@ -157,7 +157,7 @@
 				\[g(t) = k \cdot e^{-t/\tau}\]
 				
 				Réponse à un saut indiciel:
-				\[\gamma(t) = K \cdot (1-e^{-t/\tau} \cdot \epsilon (t)\]
+				\[\gamma(t) = K \cdot (1-e^{-t/\tau}) \cdot \epsilon (t)\]
 				
 				Mode temporel: $e^{s_1 \cdot t} \cdot \epsilon (t)$
 				
@@ -180,11 +180,14 @@
 				\begin{itemize}
 					\item Taux d'amortissement $\zeta$: détermine le nombre d'oscillations (mais n'est pas égal à...) de la réponse temporelle avant la stabilisation.
 					\item Pulsation propre non-amortie $\omega _n$: pulsation de résonnance de phase.
-					\item Pulsation propre du régime libre $\omega _0$: $\omega _0 = \omega _n \cdot \sqrt{1-\zeta ^2}$
+					\item Pulsation propre du régime libre $\omega _0$: $\omega _0 = \omega _n \cdot \sqrt{1-\zeta ^2} = \sqrt{\omega_{n}^{2}-\delta^{2}}$
 					\item Facteur d'amortissement $\delta$: rapidité avec laquelle le régime transitoire s'atténue ($sin (\omega _0 \cdot t)$ est pondéré par $e^{-\delta \cdot t}$)
 					\item Pulsation de résonance: $\omega _r = \omega _n \cdot \sqrt{1-2\cdot\sigma^2}$
 				\end{itemize}
 				
+				Réponse indicielle:
+				
+				\[\gamma(t) = 1-e^{-\zeta \omega_{n} t}\left[\cos \omega_{0} t+\frac{\zeta}{\sqrt{1-\zeta^{2}}} \sin \omega_{0} t\right]\]
 				
 		\subsection*{Pôles dominants}
 			
