@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
+\usepackage{textcomp}
 %\usepackage{mathrsfs}
 
 \title{Formulaire - Regul}
@@ -195,9 +196,97 @@
 			
 	\section*{Réponse fréquentielle}
 		
-		\paragraph{Diagramme de Bode}
+		\subsection{Introduction}
 		
-		\paragraph{Systèmes à retard pur}
+			\paragraph{Réponse fréquentielle:} réponse à un régime permanent sinusoidal, qui est constituée:
+			\begin{enumerate}
+				\item du gain 
+				\item de la phase
+			\end{enumerate}
+		
+		\subsection{Calcul de la réponse fréquentielle}
+		
+			\[
+			\left.G(s)\right|_{s=j \cdot \omega}=G(j \cdot \omega) \longrightarrow\left\{\begin{array}{l}
+			A(\omega)=|G(j \cdot \omega)| \\
+			\varphi(\omega)=\arg \{G(j \cdot \omega)\}
+			\end{array}\right.
+			\]
+		
+		\subsection{Diagramme de Bode}
+		
+			Formes canoniques:
+			
+			\begin{enumerate}
+				\item $G_{c 1}(s)=K$
+				\item $G_{c 2}(s)=1+s \cdot \tau$
+				\item $G_{c 3}(s)=\frac{1}{1+s \cdot \tau}$
+				\item $G_{c 4}(s)=\frac{K}{s}=\frac{1}{\bar{w}_{p 0}}=\frac{\omega_{p 0}}{s}$
+				\item $G_{c 5}(s)=K \cdot s=\frac{s}{\omega_{a 0}}$
+				\item $G_{c 6}(s)=\frac{1}{1+\frac{2 \cdot \zeta}{w_{n}} \cdot s+\frac{1}{\omega_{n}^{2}} \cdot s^{2}}$
+				\item $G_{c 7}(s)=1+\frac{2 \cdot \zeta}{\omega_{n}} \cdot s+\frac{1}{\omega_{n}^{2}} \cdot s^{2}$
+			\end{enumerate}
+			
+			\[A_{\mathrm{~dB}}=A_{1 \mathrm{~dB}}+A_{2 \mathrm{~dB}}+\ldots\]
+			\[\varphi(\omega)=\varphi_{1}(\omega)+\varphi_{2}(\omega)+\ldots\]
+			
+			Méthode:
+			
+			\begin{enumerate}
+				\item présenter $G(s)$ sous forme de Bode;
+				\item factoriser $G(s)$ de manière à faire apparaître les formes canoniques;
+				\item identifier les pulsations caractéristiques de chacun des éléments et tracer leur diagramme de Bode;
+				\item sommer les réponses des éléments
+			\end{enumerate}
+		
+		\subsection{Système fondamental d'ordre 1}
+		
+			\[G(s)=\frac{Y(s)}{U(s)}=\frac{K}{1+s \cdot \tau}=\frac{K}{1+\frac{s}{\omega_{p}}}\]
+			\[\omega_{p}=\frac{1}{\tau}\]
+			
+			Pour le gain:
+			
+			\begin{enumerate}
+				\item une asymptote horizontale jusqu'à la pulsation caractéristique $\omega_p = 1/\tau$
+				\item une asymptote oblique à partir de $\omega_p$ ayant une pente de -20dB/décade.
+			\end{enumerate}
+			
+			Pour la phase:
+			
+			\begin{enumerate}
+				\item une asymptote horizontale à 0\textdegree jusqu'à $\omega_p/10$
+				\item une asymptote oblique de $\omega_p/10$ à $10\cdot \omega_p$ ayant une pente de -45\textdegree/décade
+				\item une asymptote horizontale à -90\textdegree dès $10\cdot \omega_p$.
+			\end{enumerate}
+		
+		\subsection{Système fondamental d'ordre 2}
+		
+			\[G(s)=\frac{Y(s)}{U(s)}=\frac{K}{1+\frac{2 \cdot \zeta}{\omega_{n}} \cdot s+\frac{1}{\omega_{n}^{2}} \cdot s^{2}}\]
+			
+			Pour le gain:
+			
+			\begin{enumerate}
+				\item une asymptote horizontale jusqu'à la pulsation caractéristique $\omega _p = \omega _n$, qui correspond à la pulsation propre non-amortie;
+				\item une asymptote oblique à partir de $\omega _n$ ayant une pente de -40dB/décade.
+			\end{enumerate}
+			
+			Pour la phase:
+			
+			\begin{enumerate}
+				\item une asymptote horizontale à 0\textdegree jusqu'à $\omega_n/10$
+				\item une asymptote oblique de $\omega_n/10$ à $10\cdot \omega _n$ ayant une pente de -90\textdegree/décade
+				\item une asymptote horizontale à -180\textdegree dès $10\cdot \omega_n$.
+			\end{enumerate}
+			
+			Pulsation de résonance de gain (gain maximum):
+			
+			\[\omega_{r}=\omega_{n} \cdot \sqrt{1-2 \cdot \zeta^{2}}\]
+		
+		\subsection{Systèmes à retard pur}
+		
+			\[G(s)=\frac{Y(s)}{U(s)} = \frac{b_{m} \cdot s^{m}+b_{m-1} \cdot s^{m-1}+\ldots+b_{1} \cdot s+b_{0}}{s^{n}+a_{n-1} \cdot s^{n-1}+\ldots+a_{1} \cdot s+a_{0}} \cdot e^{-s \cdot T_{r}}\]
+		
+			\[\arg \left\{e^{-j \cdot \omega \cdot T_{r}}\right\}=-\omega \cdot T_{r}\]
 	
 	\section*{Schémas fonctionnels}
 	

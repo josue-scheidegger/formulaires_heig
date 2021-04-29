@@ -105,7 +105,7 @@
 				Autres systèmes:
 				
 				\begin{figure}[h!]
-					\includegraphics[width=10cm]{img/exemples_systemes.png}
+					\includegraphics[width=10cm]{img_sign_sys/exemples_systemes.png}
 					\centering
 				\end{figure}
 				
@@ -134,15 +134,101 @@
 			
 		\subsection*{La corrélation}
 			
+			Signaux à énergie finie:
+			\[r_{x y}[k]=\sum_{n=-\infty}^{\infty} x[n] \cdot y[n+k]\]
+			
+			Auto-corrélation:
+			\[r_{x x}[k]=\sum_{n=-\infty}^{\infty} x[n] \cdot x[n+k]\]
+			\[r_{x x}[0]=\sum_{n=-\infty}^{\infty} x^{2}[n]=W_{x}\]
+			
+			Propriétés:
+			\[r_{x y}[k]=r_{y x}[-k]\]
+			\[r_{x y}[k]=x[-k] * y[k]\]
+			\[r_{x x}[k]=r_{x x}[-k]\]
+			
+			Signaux à puissance moyenne finie:
+			\[r_{x y}[k]=\lim _{M \rightarrow \infty} \frac{1}{2 M+1} \sum_{n=-M}^{M} x[n] \cdot y[n+k]\]
+			\[r_{x x}[k]=\lim _{M \rightarrow \infty} \frac{1}{2 M+1} \sum_{n=-M}^{M} x[n] \cdot x[n+k]\]
+			
+			Signaux périodiques:
+			\[r_{x y}[k]=\frac{1}{N} \sum_{n=0}^{N-1} x[n] \cdot y[n+k]\]
+			\[r_{x x}[k]=\frac{1}{N} \sum_{n=0}^{N-1} x[n] \cdot x[n+k]\]
+			
+			Normalisation avant corrélation:
+			\[x_{n}[n]=\left(x[n]-\mu_{x}\right) / \sigma_{x}\]
+			\[y_{n}[n]=\left(y[n]-\mu_{y}\right) / \sigma_{y}\]
+			\[\rho_{x y}[k]=\frac{1}{N} \sum_{n=0}^{N-1} x_{n}[n] \cdot y_{n}[n+k]\]
 			
 	\section*{Réponse des systèmes numériques}
 		
 		\subsection*{Réponse temporelle des systèmes linéaires}
 		\subsection*{Stabilité des systèmes numériques}
 		\subsection*{Instants caractéristiques}
+			
+			\[K_{c}=\pm \frac{1}{\ln (R)}=\frac{1}{|\ln (R)|}\]
+			\[K_{p}=\frac{2 \pi}{\Omega}\]
+			\[K_{t r} \simeq 5 K_{c}=\frac{5}{|\ln (R)|}\]
+			\[N_{osc}=\frac{K_{t r}}{K_{p}}=\frac{5 \Omega}{2 \pi|\ln (R)|} \simeq \frac{\Omega}{|\ln (R)|}\]
+	
+	\section*{Analyse temporelle des systèmes discrets}
 		
+		\subsection*{Transformée en Z}
+			\[X(z)=Z\{x[n]\}=\sum_{n=0}^{+\infty} x[n] z^{-n}\]
+			\[z^{-1} \equiv e^{-s T_{e}}\]
+			
+			% fig transformées en Z
+			
+		\subsection*{Propriétés de la transformée en Z}
+			
+			\begin{enumerate}
+				\item Linéarité: $Z\{a x[n]+b y[n]\}=a X(z)+b Y(z)$
+				\item Décalage temporel: $Z\{x[n+d]\}=z^{+d} X(z)$
+				\item Amortissement: $Z\left\{\alpha^{n} x[n]\right\}=X\left(\frac{z}{\alpha}\right)$
+				\item Valeur initiale:$x[0]=\left.X(z)\right|_{z \rightarrow \infty}$
+				\item Valeur finale (si système stable): $x[\infty]=\left.(z-1) X(z)\right|_{z=1}$
+			\end{enumerate}
+			
+		\subsection*{Équation aux différences et fonction de transfert}
+			
+			\[y[n]+\sum_{k=1}^{N} a_{k} y[n-k]=\sum_{k=0}^{M} b_{k} x[n-k]\]
+			
+			Pour un système d'ordre 2:
+			\[y[n]+a_{1} y[n-1]+a_{2} y[n-2]=b_{0} x[n]+b_{1} x[n-1]+b_{2} x[n-2]\]
+			
+			Forme de réalisation:
+			\[H(z) \equiv \frac{Y(z)}{X(z)}=\frac{b_{0}+b_{1} z^{-1}+b_{2} z^{-2}}{1+a_{1} z^{-1}+a_{2} z^{-2}}\]
+			
+			Forme analytique:
+			\[H(z)=\frac{b_{0} z^{2}+b_{1} z+b_{2}}{z^{2}+a_{1} z+a_{2}}\]
+			
+		\subsection*{Lieu de pôles}
+			
+			% fig lieu des pôles
+			
+	\section*{Analyse fréquentielle des signaux continus et discrets}
+	
+		\subsection*{Analyse des signaux périodiques}
+		\subsection*{Transformation de Fourrier des signaux non périodiques}
+		\subsection*{Éléments d'analyse spectrale numérique}
+	
+	\section*{Analyse fréquentielle des systèmes, et synthèse des filtres}
 		
+		\subsection*{Réponse fréquentielle des systèmes LTI}
+		\subsection*{Pôles, zéros et réponse fréquentielle}
+		\subsection*{Calcul et traçage de réponse fréquentielle}
+		\subsection*{Analyse et réalisation d'un filtre}
+		\subsection*{Classification des systèmes numériques}
 		
-		
+	\section*{Échantillonnage et reconstruction des signaux analogiques}
+	
+		\subsection*{Introduction}
+		\subsection*{Analyse temporelle}
+		\subsection*{Analyse fréquentielle}
+		\subsection*{Recouvrement spectral}
+		\subsection*{Théorème de l'échantillonnage}
+		\subsection*{Quantification d'un signal échantillonné}
+		\subsection*{Choix d'un filtre et de la fréquence d'échantillonnage}
+		\subsection*{Reconstruction du signal}
+		\subsection*{Analyse qualitative d'une chaîne A/N - N/A}
 		
 \end{document}

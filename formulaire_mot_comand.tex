@@ -11,9 +11,9 @@
 \title{Formulaire MotComand}
 
 \begin{document}
-	
+	%\maketitle
 	\begin{multicols}{3}
-		\maketitle
+	\begin{flushleft}
 		\section*{Mouvement dans les machines}
 		
 			\subsection*{Actionneurs et moteurs}
@@ -100,7 +100,7 @@
 					\item \emph{Mode tout-ou-rien:} le plus simple et le plus bon marché; pas d'adaptation à la charge entraînée.
 					\item \emph{Mode contrôlé en boucle ouverte:} contrôle approximatif de la vitesse et de l'effort fournis.
 					\item \emph{Mode contrôlé en «boucle fermée»:} grande précision; plus complexe et coûteux.
-					\item \emph{Mode servomoteur - réglé en position:} permet de contrôler tous les mouvements d'une machine; complexes et coûteux.
+					\item \emph{Mode servomoteur - réglé en position:} permet de contrôler tous les mouvements d'une machine; complexe et coûteux.
 					\item \emph{Mode pas-à-pas:} simple et bon marché; limité en puissance (~200W) et vitesse (~1000tr/min).
 				\end{itemize}
 	
@@ -156,7 +156,6 @@
 		\subsection*{Réducteurs rotatifs-linéaires}
 		
 			\[i = \frac{\omega_M}{v_L} = \frac{2 \cdot \pi}{Z_M \cdot p} \]
-			\[v_L = r \cdot \omega_M \]
 			\[P_L = v_L \cdot F_L \]
 			
 			En régime moteur:
@@ -214,7 +213,7 @@
 			
 				\[u_{0}(t)=\underbrace{\left(R_{a}+R_{i}\right)}_{R_{\text {total }}} \cdot i_{a}(t)+\underbrace{\left(L_{a}+L_{i}\right)}_{L_{\text {total }}} \cdot \frac{d i_{a}(t)}{d t}+u_{i}(t)\]
 				
-				En négligeant l'effet de l'entrée:
+				En négligeant l'effet de l'alimentation:
 				
 				\[u_{a}(t)=R_{a} \cdot i_{a}(t)+L_{a} \cdot \frac{d i_{a}(t)}{d t}+u_{i}(t)\]
 				
@@ -258,25 +257,26 @@
 				Puissance électromagnétique:
 				\[P_{e m}(t)=P_{\text {élec }}(t)-P_{\text {Joule }}(t)=P_{\text {arbre }}(t)+P_{\text {frott }}(t)\]
 			
-			
-			
-			
 			\subsubsection*{Comportement dynamique des moteurs DC}
-			
-				Avec $T_{rest}$ nulle:
-				
-				\[\frac{L_{a}}{R_{a}} \cdot \frac{R_{a} \cdot J_{t o t a l}}{k_{T} \cdot k_{E}} \cdot \frac{d^{2} \omega(t)}{d t^{2}}+\frac{R_{a} \cdot J_{t o t a l}}{k_{T} \cdot k_{E}} \cdot \frac{d \omega(t)}{d t}+\omega(t)-\frac{U_{a}}{k_{E}}=0\]
-				
-				\[\tau_{é l} \cdot \tau_{m é c} \cdot \frac{d^{2} \omega(t)}{d t^{2}}+\tau_{m é c} \cdot \frac{d \omega(t)}{d t}+\omega(t)-\frac{U_{a}}{k_{E}}=0\]
 				
 				Constante de temps électrique:
 				\[\tau_{é l}=\frac{L_{a}}{R_{a}}\]
 				
-				Constante de temps électrique en prenant en compte l'alimentation:
+				En prenant en compte de l'effet de l'alimentation:
 				\[\tau_{é l}=\frac{L_{t o t a l}}{R_{t o t a l}}=\frac{L_{a}+L_{i}}{R_{a}+R_{i}}\]
 				
 				Constante de temps mécanique:
 				\[\tau_{m é c}=\frac{R_{a} \cdot J_{t o t a l}}{k_{T} \cdot k_{E}}\]
+				
+				Avec $\tau_{élec} << \tau_{mec}$:
+				
+				\[\tau_{m é c} \cdot \frac{d \omega(t)}{d t}+\omega(t)-\frac{U_{a}}{k_{E}}=0\]
+				
+				\[\omega(\mathrm{t})=\Omega_{0}+\left(\Omega_{\infty}-\Omega_{0}\right) \cdot\left(1-\mathrm{e}^{-\mathrm{t} / \tau_{\mathrm{méc}}}\right)\]
+				
+				\[\mathrm{I}_{\text {initial }}=\frac{\mathrm{U}_{\mathrm{a}}}{\mathrm{R}_{\mathrm{a}}}\]
+				
+				\[i(t)=I_{0}+\left(I_{\infty}-I_{0}\right) \cdot\left(1-\mathrm{e}^{-t / \tau_{e l}}\right)\]
 				
 			\subsubsection*{Variantes d'excitation des moteurs DC}
 				
@@ -284,5 +284,162 @@
 				
 				\[T_{e m}(t)=\left[k \cdot i_{e}(t)\right] \cdot i_{a}(t)\]
 				\[u_{i}(t)=\left[k \cdot i_{e}(t)\right] \cdot \omega(t)\]
+				
+				Moteur à excitation série:
+				
+				\[T_{e m}(t)=k \cdot\left[i_{a}(t)\right]^{2}\]
+				
+		\subsection*{Moteurs synchrones}
+		
+			\subsubsection*{Principe de fonctionnement}
+				
+				\[N=\frac{60 \cdot f}{p} \quad[\mathrm{tr} / \mathrm{min}] \quad \text { ou } \quad \omega=\frac{2 \pi \cdot f}{p} \quad[\mathrm{rad} / \mathrm{s}]\]
+			
+			\subsubsection*{Puissance}
+				
+				Puissance mécanique:
+				\[P_{\text {arbre }}(t)=T_{\text {arbre }}(t) \cdot \omega(t)\]
+				
+				Puissance électrique:
+				\[P_{\text {élec }}(t)=\sqrt{3} \cdot U_{c} \cdot i(t) \cdot \cos [\varphi(t)]\]
+		
+		\subsection*{Moteurs asynchrones}
+		
+			\subsubsection*{Généralités}
+				
+				Glissement:
+				\[s=\frac{N_{s}-N}{N_{s}}\]
+				
+			\subsubsection*{Puissance}
+				Puissance à l'arbre:
+				\[P_{\text {arbre }}(t)=T_{\text {arbre }}(t) \cdot \omega(t)\]
+				
+				Puissance électrique:
+				\[P_{\text {élec }}(t)=\sqrt{3} \cdot U_{c} \cdot i(t) \cdot \cos [\varphi(t)]\]
+				
+				Puissance mécanique:
+				\[P_{m é c}(t)=T_{r é s}(t) \cdot \omega(t)\]
+			
+			\subsubsection*{Régime de survitesse}
+			
+			Limite de fonctionnement à puissance constante:
+			\[T_{\text {survitesse }} \cdot \omega_{\text {survitesse }}<T_{\text {nom }} \cdot \omega_{\text {nom }}\]
+			
+		\subsection*{Moteurs pas-à-pas}
+			
+			\subsubsection*{Principe de fonctionnement}
+				
+				\[\omega(t)=f_{\text {pulse }}(t) \cdot \frac{2 \cdot \pi}{p_{\text {step }}} \quad[\mathrm{rad} / \mathrm{s}] \quad \text { ou } \quad N(t)=f_{\text {pulse }}(t) \cdot \frac{60}{p_{\text {step }}} \quad[\mathrm{tr} / \mathrm{min}]\]
+				
+		\subsection*{Autres types de moteurs électriques}
+		
+			\begin{itemize}
+				\item Électroaimants
+				\item Moteurs à bobine mobile
+				\item Moteurs linéaires et moteurs couples
+				\item Moteurs linéaires «piston»
+				\item Piézoactionneurs et piézomoteurs
+			\end{itemize}
+		
+		\subsection*{Choix d'un moteur électrique}
+			
+			\subsubsection*{Fonctionnement en régime permanent}
+			
+			\subsubsection*{Fonctionnement en régime impulsionnel}
+				
+				Dimensionnement thermique - 1ère hypothèse:
+				\[\Delta \vartheta=P_{\text {therm }} \cdot R_{\text {therm }}\]
+				
+				Dimensionnement thermique - 2ème hypothèse:
+				\[P_{\text {pertes totales }}(t)=k_{\text {therm }} \cdot T_{e m}^{2}(t)\]
+				
+				Évolution de la température en fonction du couple:
+				\[\Delta \vartheta_{\text {nom }}=P_{\text {therm nom }} \cdot R_{\text {therm }}\]
+				\[\Delta E_{\text {therm }}=m \cdot c_{m} \cdot \Delta \vartheta\]
+				\[\Delta \vartheta(t)=\Delta \vartheta_{0}+\left(\Delta \vartheta_{\infty}-\Delta \vartheta_{0}\right) \cdot\left(1-e^{-\frac{t}{\tau_{t h e r m}}}\right)\]
+				\[\Delta \vartheta_{\infty}=P_{\text {therm }} \cdot R_{\text {therm }}\]
+				\[\tau_{\text {therm }}=m \cdot c_{m} \cdot R_{\text {therm }}\]
+				\[\frac{\Delta \vartheta(t)}{\Delta \vartheta_{\text {nom }}}=\frac{P_{\text {therm }}}{P_{\text {therm nom }}} \cdot\left(1-e^{-\frac{t}{\tau_{\text {therm }}}}\right)\]
+				\[\frac{\Delta \vartheta(t)}{\Delta \vartheta_{n o m}}=\left(\frac{T_{e m}}{T_{n o m}}\right)^{2} \cdot\left(1-e^{-\frac{t}{\tau_{\text {therm }}}}\right) \leq 1\]
+				\[t_{c y c l e}=\frac{3^{\prime} 600}{C}\]
+				\[T_{r . m . s .}=\sqrt{\frac{\int_{0}^{t_{c y c l e}} T_{e m}^{2}(t) \cdot d t}{t_{c y c l e}}}<0,9 \cdot T_{n o m}\]
+				\[T_{r . m . s .}=\sqrt{\frac{T_{e m-1}^{2} \cdot t_{1}+T_{e m-2}^{2} \cdot t_{2}+\cdots+T_{e m-n}^{2} \cdot t_{n}}{t_{c y c l e}}}<0,9 \cdot T_{n o m}\]
+				\[\text { marge }=1-\frac{T_{r . m . s .}}{T_{n o m}}\]
+				
+	\section*{Alimentation des moteurs}
+		
+		%\subsection*{Précurseurs des convertisseurs électroniques}
+		
+		%\subsection*{Amplificateurs analogiques}
+		
+		\subsection*{Amplificateurs à découpage}
+			
+			\[U_{M-m o y e n}=U_{A} \cdot \underbrace{\frac{t_{e}}{t_{c y c l e}}}_{=\delta}\]
+			\[P_{S} \cong\left[1,0+U_{A} \cdot\left(t_{o f f-o n}+t_{o n-o f f}\right) \cdot f_{d}\right] \cdot I_{M}\]
+			
+		\subsection*{Considérations d'énergie et de puissance}
+			
+			Alimentation triphasée:
+			\[P_{A C}(t)=\sqrt{3} \cdot U_{c o m p} \cdot I_{A C}(t)\]
+			
+			Bus DC:
+			\[P_{D C}(t)=U_{D C} \cdot I_{D C}(t)\]
+			
+			Bornes moteur:
+			\[P_{M-\mathrm{e} l}(t)=U_{M}(t) \cdot I_{M}(t)\]
+			
+			Arbre moteur:
+			\[P_{M-m é c}(t)=\omega_{M}(t) \cdot T_{M}(t)\]
+			
+			\[P_{A C}(t) \cong P_{D C}(t) \cong P_{M-\mathrm{e} l}(t) \cong P_{M-m é c}(t)\]
+			
+		\subsection*{Freinage des servo-moteurs}
+			
+			\[C_{\text {total }}>\frac{2 \cdot E_{c i n}}{U_{A-l i m}^{2}-U_{A-m a x-Q 1}^{2}}\]
+			\[R_{\text {frein }}<\frac{U_{D C-\text { seuil }}^{2}}{P_{\text {frein-max }}}\]
+			\[P_{\text {frein-moyen }}=\frac{\frac{1}{2} \cdot J_{\text {total }} \cdot \omega_{\max }^{2}}{t_{\text {cycle }}}\]
+			
+	\section*{Pilotage en position}
+		
+		%\subsection*{Réglage en position}
+		
+		\subsection*{Profils de mouvement}
+			
+			\subsubsection*{Profil à vitesse constante}
+				
+				\[p(t)=t\]
+				
+			\subsubsection*{Profil à accélération constante}
+				
+				\[
+				p(t)=\left\{\begin{array}{ll}
+				2 \cdot t^{2} & \text { si } t \leq 0,5 \\
+				1-2 \cdot(1-t)^{2} & \text { si } t>0,5
+				\end{array}\right.
+				\]
+				
+			\subsubsection*{Profil «bang-bang»}
+			
+				\[
+				p(t)=\left\{\begin{array}{cc}
+				\frac{9}{4} \cdot t^{2} & \text { si } t \leq \frac{1}{3} \\
+				\frac{1}{4}+\frac{3}{2} \cdot\left(t-\frac{1}{3}\right) & \text { si } t>\frac{1}{3 \text { et } t} \leq \frac{2}{3} \\
+				1-\frac{9}{4} \cdot(1-t)^{2} & \text { si } t>\frac{2}{3}
+				\end{array}\right.
+				\]
+				
+			\subsubsection*{Loi semi-sinusoïdale}
+				
+				\[p(t)=\frac{1-\cos (\pi \cdot t)}{2}\]
+				
+			\subsubsection*{Loi sinusoïdale}
+				
+				\[p(t)=t-\frac{\sin (2 \pi \cdot t)}{2 \pi}\]
+				
+			\subsubsection*{Polynôme du 5ème degré}
+			
+				\[p(t)=10 \cdot t^{3}-15 \cdot t^{4}+6 \cdot t^{5}\]
+	
+	\end{flushleft}
 	\end{multicols}
 \end{document}

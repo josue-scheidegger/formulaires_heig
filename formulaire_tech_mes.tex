@@ -1,16 +1,20 @@
-\documentclass[10pt, twocolumn]{article}
+\documentclass[10pt]{article} % twocolumn
 \usepackage[landscape, a4paper, margin=2cm]{geometry}
 \usepackage{amsmath}
+\usepackage{multicol}
+\usepackage[utf8]{inputenc}
 
 \title{Formulaire TechMes}
 
 \begin{document}
+\begin{multicols}{3}
+\begin{flushleft}
 	
 	\begin{center}
 		{\Large \bf Formulaire TechMes} \\
 	\end{center}
 	
-	\section*{Généralités}
+	\section*{Introduction}
 		
 		\subsection*{Méthodes de mesure}
 		
@@ -48,30 +52,20 @@
 			
 	\section*{Chaîne de mesure}
 	
-		\subsection*{Généralités}
-	
+		\subsection*{Introduction}
+			
 			\begin{enumerate}
-				\item \emph{Mesurande:} grandeur non-électrique que l'on souhaite mesurer
-				\item \emph{Transducteur (capteur):} signaux analogiques
-				\item \emph{Conditionneur:} signaux continus dans le temps
-				\item \emph{Pré-traitement:} amplification, filtrage
-				\item \emph{Convertisseur A/N:} échantillonnage (discrétisation)
-					\begin{enumerate}
-						\item $x(t) \rightarrow$ Échantillonneur
-						\item $x[n] \rightarrow$ Quantificateur
-						\item Codeur $\rightarrow$ signal numérique
-					\end{enumerate}
-				\item \emph{Post-traitement et stockage des données}
-				\item \emph{Résultat}
+				\item \emph{Chaîne de mesure:} succession d'appareils assurant la transmission et la transformation de l'information entre le capteur et le résultat de mesure.
+				\item \emph{Mesurande:} grandeur d'entrée que l'on souhaite mesurer.
 			\end{enumerate}
 		
 		\subsection*{Transducteurs: capteurs et actionneurs}
 			
 			\begin{description}
-				\item [Transducteur:] conversion d'une grandeur physique en une autre.
-				\item [Capteur:] conversion d'une grandeur physique en un signal électrique.
-				\item [Actionneur:] génère une grandeur physique depuis un signal électrique.
-				\item [Grandeurs d'influence:] grandeurs d'entrée non désirées du système.
+				\item [Transducteur (transducer):] conversion d'une grandeur physique en une autre.
+				\item [Capteur (sensor):] conversion d'une grandeur physique en grandeur d'entrée du système.
+				\item [Actionneur (actuator):] conversion d'une grandeur de sortie du système en grandeur physique.
+				\item [Grandeurs d'influence $Z_i$:] grandeurs d'entrée non désirées du système.
 			\end{description}
 			
 			Grandeurs d'influence les plus courantes: 
@@ -83,13 +77,14 @@
 				\item Humidité relative
 			\end{itemize}
 		
-		\subsection*{Problème de mesure}
+		\subsection*{Résolution du problème de mesure}
 		
-			\[Y = F(X) \quad X_m=F^{-1}(Y)\]
+			\[Y = F(X)\]
+			\[X_m=F^{-1}(Y)\]
 			
 			\begin{itemize}
 				\item $X$ : vraie valeur du mesurande (que l'on ne connaîtra jamais exactement)
-				\item $X_m$ : valeur mesurée; est une estimation de $X$
+				\item $X_m$ : valeur mesurée, qui est une estimation de $X$
 				\item \emph{Validité des mesures:} degré de confiance que l'on peut accorder au résultat chiffré de la mesure.
 			\end{itemize}
 			
@@ -105,85 +100,296 @@
 			
 		\subsection*{Modèle mathématique}
 			
-			Modèle linéaire:
+			\paragraph{Étendue de mesure:} domaine des valeurs du mesurande dans lequel le modèle mathématique est valable.
+			
+		\subsection*{Forme linéaire de la chaîne de mesure}
+		
 			\[Y = G \cdot X + \text{Offset}\]
 			
-			Modèle polynomial:
+		\subsection*{Forme polynomiale de la chaîne de mesure}
+		
 			\[Y=a_0+a_1\cdot X+a_2\cdot X^2+...+a_n\cdot X^n\]
 			\[X_{m}=c_{0}+c_{1} \cdot Y+c_{2} \cdot Y^{2}+\ldots+c_{n} \cdot Y^{n}\]
+			
+%		\subsection*{Loi physique du capteur}
+%		\subsection*{Erreurs de non-conformité ou de non-linéarité}
+%		\subsection*{Bruit interne}
+%		\subsection*{Grandeurs d'influence}
+		\subsection*{Effet de charge}
+			
+			\begin{description}
+				\item[Effet de charge (loading effect):] modification induites par la présence du transducteur.
+			\end{description}
+%		\subsection*{Perturbations}
+%		\subsection*{Systèmes d'acquisition de données}
+%		\subsection*{Architectures}
+%		\subsection*{Modes du multiplexeur}
+%		\subsection*{Sources flottantes et courants de polarisation}
+%		\subsection*{Conditionnement des signaux}
+
+		\subsection*{Différents types de signaux}
+			
+			\begin{itemize}
+				\item Continu
+				\item Discret
+				\item Numérique
+				\item Déterministes
+				\item Aléatoires
+			\end{itemize}
 		
 	\section*{Etalonnage, ajustage}
+	
+		%\subsection*{Approximations mathématiques}
+	
 		\subsection*{Incertitudes}
 		
+			Modèle linéaire:
+			\[\mathbf{Y}=\mathbf{G} \mathbf{X}+\mathbf{O f}\]
+			
+			\begin{description}
+				\item [Erreur absolue (e): ] écart entre la valeur mesurée et la vraie valeur.
+				\item [Erreur relative ($\epsilon$):] quotient entre erreur absolue et vraie valeur.
+				\item [Erreur de gain ($\alpha$):] erreur relative du gain de la chaîne. Erreur systématique proportionnelle au mesurande.
+				\item [Erreur de décalage (D):] erreur absolue à l'origine. Erreur systématique constante, indépendante du mesurande.
+				\item [Erreur de non-linéarité (NL):] écart entre la droite du modèle actuel et la courbe réelle de réponse.
+				\item [Incertitude de mesure (I):] valeur limite que peut prendre l'erreur, avec un certain degré de confiance (en général 99\%).
+			\end{description}
+			
+			\[e=X_m-X=X \cdot \alpha+D+N L\]
+			\[\epsilon = \frac{e}{X} = \frac{e}{X_m}\]
+			\[I=\alpha \cdot \text { lect }+B \cdot \text { digit }=\alpha \cdot \text { lect }+\beta \cdot \text { gamme }\]
+			
 		\subsection*{Ajustage et étalonnage}
 			
 			\begin{description}
-				\item [Ajustage:] modifier le comportement => meilleure réponse possible (la plus proche des valeurs nominales).
+				\item [Ajustage:] modifier le comportement pour une meilleure réponse possible.
 				\item [Étalonnage:] déterminer les erreurs actuelles.
 			\end{description}
 			
-			\subsubsection{Incertitudes résiduelles d'ajustage}
-			
-				Calcul du gain:
-				\[G_{n}=\frac{Y_{\max }-Y_{o}}{X_{\max }-X_{o}}\]
+			\subsubsection*{Ajustage}
+					
+					\begin{itemize}
+						\item Modèle nominal: rectangle d'incertitude centré autour des valeurs nominales et contient les valeurs extrêmes mesurées.
+						\item Modèle réel: idem que modèle nominal, mais n'est pas centré autour des valeurs moyennes; le rectangle est alors plus petit.
+					\end{itemize}
+					
+					Gain nominal:
+					\[G_{n}=\frac{Y_{\max }-Y_{o}}{X_{\max }-X_{o}}\]
+					
+					Incertitude de décalage:
+					\[D_{c}=\Delta X_{o}+\mid \frac{\Delta Y_{0}}{G_{n}}\]
+					
+					Incertitude de gain:
+					\[\alpha_{c}=\frac{D_{c}+\Delta X_{\max }+\left|\frac{\Delta Y \max }{G_{n}}\right|}{X_{\max }-X_{o}}\]
 				
-				Incertitude de décalage:
-				\[D_{c}=\Delta X_{o}+\mid \frac{\Delta Y_{0}}{G_{n}}\]
+			\subsubsection*{Étalonnage}
 				
-				Incertitude de gain:
-				\[\alpha_{c}=\frac{D_{c}+\Delta X_{\max }+\left|\frac{\Delta Y \max }{G_{n}}\right|}{X_{\max }-X_{o}}\]
-			
-			\subsection{Comparer les modèles actuels et nominals}
-			
+				Erreur pour chaque couple mesuré:
+				\[e(i)=X_{m}(i)-X(i)=\frac{Y(i)-O f_{\text {nom }}}{G_{\text {nom }}}-X(i)\]
+				
+				Méthodes possibles pour choix de la droite:
+				\begin{description}
+					\item [Droite par les extrêmes:] la droite passe par deux points de la réponse réelle.
+					\item [Meilleure droite:] droite de régression linéaire.
+				\end{description}
+				
+				Écart entre la valeur mesurée et la droite:
+				\[\Delta=Y(i)-\left[G_{r e e l} \cdot X(i)+O f_{r e e l}\right]\]
+				\[N L+\text { Bruit }=\frac{\max |\Delta|}{G_{\text {reel }}}\]
+				
 				Erreur de gain:
 				\[\alpha=\frac{G_{r}-G_{n}}{G_{n}}\]
 				
 				Erreur de décalage:
 				\[D=\frac{O f_{r}-O f_{n}}{G_{n}}\]
+				
+			\subsubsection*{Auto-calibrage}
 			
-			\subsection{Non-linéarité}
-			
-			Écart entre la courbe et le modèle réel:
-			\[\Delta \mathrm{i}=\mathrm{Yi}-(\mathrm{GrXi}+\mathrm{Ofr})\]
-			\[\delta \mathrm{i}=\mathrm{Xi}-(\mathrm{Yi}-\mathrm{Ofr}) / \mathrm{Gr}\]
-			
-			Spécification d'incertitude:
-			\[\mathrm{NL}=\max \{|\Delta \mathrm{i}| / \mathrm{Gr}\}=\max \{|\delta \mathrm{i}|\}\]
-			
-		\subsection*{Compensation des erreurs systématiques}
+		%\subsection*{Compensation des erreurs systématiques}
+		
+			%\subsubsection*{Compensation linéaire}
+			%\subsubsection*{Moteur de correction mathématique}
+		
 		\subsection*{Mesures répétées}
 			
-			Sensiblité:
-			\[K(M) = \frac{\partial C(M)}{\partial (M)}\]
+			Moyenne:
+			\[\mu=\lim _{N \rightarrow \infty} \frac{1}{N} \sum_{i=1}^{N} x_{i}\]
 			
-			Fidélité d'un instrument:
-			\[F = \sqrt{(valeur\_etalon - valeur\_mesuree)^{2}}\]
+			Écart-type:
+			\[\sigma=\lim _{N \rightarrow \infty} \sqrt{\frac{1}{N} \sum_{i=1}^{N}\left(x_{i}-\mu\right)^{2}}\]
 			
-			Justesse d'un instrument:
-			\[J [\%] = (1 - \frac{valeur\_etalon - valeur\_mesuree}{valeur\_etalon})\]
-				% Ajouter la valeur absolue
+			\begin{itemize}
+				\item $1 \cdot \sigma \rightarrow 68 \%$
+				\item $2 \cdot \sigma \rightarrow 95 \%$
+				\item $3 \cdot \sigma \rightarrow 99.7 \%$
+			\end{itemize}
 			
-			Théorème de Shanon-Nyquist:
-			\[f_{e} \geq 2 \cdot f_{max}\]
+			\begin{description}
+				\item [Exactitude ou justesse:] caractérise l'erreur systématique, lié à la moyenne.
+				\item [Répétabilité ou fidélité:] caractérise l'erreur aléatoire, lié à l'écart-type.
+			\end{description}
 			
-			Quantum (résolution):
-			\[q = \frac{X_{PE}}{2^N}\]
-			\[X_{PE} = X_{max}-X_{min}\]
-			
-			Erreur de quantification:
-			\[-q/2 \leq e_q < q/2\]
-			
-			Fréquence de scrutation et de balayage:
-			\[f_{scan} \leq \frac{f_{scrut}}{N_{canaux}}\]
-			
-	\section*{Analyse de mesures}
-	\section*{Capteurs}
-	\section*{Lexique}
-	
-		\begin{description}
+%	\section*{Analyse de mesures}
+%	
+%		\subsection*{La mesure et sa représentation}
+%			\subsubsection*{Définitions}
+%			\subsubsection*{Moyenne, écart quadratique moyen, écart-type}
+%			\subsubsection*{Représentation d'un échantillon de mesures à l'aide d'un histogramme}
+%			\subsubsection*{Histogramme cumulé}
+%			\subsubsection*{Médiane et mode}
+%		\subsection*{La mesure vue comme stochastique}
+%			\subsubsection*{Définitions}
+%			\subsubsection*{Universalité des lois de probabilité}
+%			\subsubsection*{Distribution de probabilité des variables aléatoires discrètes}
+%			\subsubsection*{Distribution de probabilité des variables aléatoires continues}
+%			\subsubsection*{Distribution de probabilité continues usuelles}
+%			\subsubsection*{Incertitude de la moyenne empirique, intervalle et niveau de confiance}
+%			
+%		\subsection*{Mesures multidimensionnelles}
+%			\subsubsection*{Covariance et corrélation}
+%			\subsubsection*{Incertitude globale et corrélation des variables internes}
+%			\subsubsection*{Cas particuliers fréquents}
+%			\subsubsection*{Budget d'erreur}
+%		\subsection*{Ajustement du modèle}
 		
-			\item [Résolution de mesure:] plus petite variation du mesurande que l'on peut détecter (1 quantum = 1 digit = 1 LSB)
-		\end{description}
+%	\section*{Capteurs}
+%	
+%		\subsection*{Classification des capteurs}
+%		
+%			\begin{itemize}
+%				\item Principe de fonctionnement actif ou passif
+%				\item Type de mesure absolue ou relative
+%				\item Types de matériaux utilisés
+%				\item Principes de mesure
+%				\item Stimuli utilisé
+%				\item Champs d'application
+%			\end{itemize}
+%			
+%		\subsection*{Choix d'un capteur}
+%		
+%			\begin{table}[h!]
+%			\begin{tabular}{|l|l|}
+%			\hline
+%			MESURANDE Conditions imposées               & CAPTEUR Caractéristiques métrologiques            \\ \hline
+%			Plage de variation                          & Étendue de mesure                                 \\ \hline
+%			Variation minimale à mesurer                & Résolution                                        \\ \hline
+%			Spectre de fréquence ou vitesse de rotation & Bande passante                                    \\ \hline
+%			Précision de mesure                         & Erreur de linéarité, erreur d’hystérésis          \\ \hline
+%			Plage de température de fonctionne- ment    & Dérive thermique du zéro, tenue en température    \\ \hline
+%			Localisation                                & Encombrement                                      \\ \hline
+%			Composition de l’atmosphère                 & Inertie chimique, protection                      \\ \hline
+%			Parasites                                   & Blindage, isolement ou non par rapport à la masse \\ \hline
+%			\end{tabular}
+%			\end{table}
+%			
+%			Principaux termes:
+%			
+%			\begin{table}[]
+%			\begin{tabular}{|l|l|l|l|}
+%			\hline
+%			Français & Anglais & Définition & exemple \\ \hline
+%			Sensibilité & Sensitivity & output variation / input variation & mV/g, mA/oC \\ \hline
+%			Stabilité & Stability & Coefficient de variation selon une grandeur d’influence & stabilité en température \\ \hline
+%			Précision & Accuracy & Somme de toutes les perturbations qui influencent la sortie du capteur &  \\ \hline
+%			Étendue mesure & Span, range & Valeur max mesurable - valeur min mesurable &  \\ \hline
+%			Résolution & Resolution & Plus petite variation du mesurande mesurable par le capteur &  \\ \hline
+%			Sélectivité & Selectivity & S’applique à des capteurs biochimiques, sensibles à une molécule plus particulièrement par rapport à une autre molécule &  \\ \hline
+%			Temps de réponse & Response time & Temps de propagation entre l’entrée et la sortie du capteur &  \\ \hline
+%			Conditions environnementales & Environmental conditions & Décrit les plages de variation admissible pour les paramètres extérieurs & humidité,température,pression \\ \hline
+%			Facteur de surcharge & Overload characteristics & Capacité à supporter un dépassement de la plage de mesure du mesurande &  \\ \hline
+%			Linearité & Linearity &  &  \\ \hline
+%			Hystérèse & Hysteresis &  &  \\ \hline
+%			Zone morte & Dead band & Plage de valeur du mesurande pour la- quelle la sensibilité du capteur est nulle ou mauvaise &  \\ \hline
+%			Durée de vie & Operating life & Durée pendant laquelle les caractéristiques du capteur sont observées & mtbf = mean time before failure \\ \hline
+%			Taille & Size &  &  \\ \hline
+%			Poids & Weight &  &  \\ \hline
+%			Prix & Price &  &  \\ \hline
+%			\end{tabular}
+%			\end{table}
+%			
+%			Définitions:
+%			
+%			\begin{description}
+%				\item [Capteur actif:] n'a pas besoin d'énergie additionnelle.
+%				\item [Capteur passif:] nécessite un signal d'excitation.
+%				\item [Capteur absolu:] produit une sortie en relation directe avec une échelle physique absolue indépendante des conditions de mesure.
+%				\item [Capteur relatif:] sortie dépend du contexte.
+%			\end{description}
+%			
+%		\subsection*{Matériaux utilisés}
+%		
+%			\begin{table}[]
+%			\begin{tabular}{|l|l|}
+%			\hline
+%			Organique              & Matière fabriquée par les êtres vivants                              \\ \hline
+%			Inorganique            & Matière qui ne possède pas les caractéristiques nécessaires à la vie \\ \hline
+%			Conducteur             & Corps capable de transmettre de l’électricité                        \\ \hline
+%			Isolant                & Matériau qui isole de l’électricité                                  \\ \hline
+%			Semi-conducteur        &                                                                      \\ \hline
+%			Liquide, gaz ou plasma & Etats de la matière                                                  \\ \hline
+%			Substancebiologique    & Matériau extrait du monde vivant                                     \\ \hline
+%			\end{tabular}
+%			\end{table}
+%			
+%		\subsection*{Principes de conversion}
+%			
+%			\begin{itemize}
+%				\item Physiques
+%				\item Chimiques
+%				\item Biologiques
+%			\end{itemize}
+%			
+%		\subsection*{Mesurande}
+%			
+%			\begin{itemize}
+%				\item Onde
+%				\item Biologique
+%				\item Chimique
+%				\item Électrique
+%				\item Magnétique
+%				\item Onde optique
+%				\item Mécanique
+%				\item Radiation
+%				\item Thermique
+%			\end{itemize}
+%		
+%		\subsection*{Capteur réel}
+%			
+%			\begin{itemize}
+%				\item Erreurs de décalage et de gain
+%				\item Erreurs de linéarité et d'hystérèse
+%				\item Erreurs de mobilité et de bruit
+%				\item Erreurs systématiques et aléatoires
+%			\end{itemize}
+%			
+%		\subsection*{Exemples}
+%			
+%			\begin{itemize}
+%				\item Capteur de courant inductif
+%				\item Capteur de courant par effet Hall
+%				\item Température
+%				\item Humidité (SHT3x-ARP de Sensirion)
+%				\item Pression (Keller series 26 W)
+%				\item Jauges de déformation
+%				\item Force
+%				\item Couple (Omega TQ513)
+%				\item Position linéaire (LT1300)
+%				\item Position angulaire (Baumer GM400)
+%				\item Vitesse (Philips KMI15/1)
+%				\item Capteur de vibration (Colibrys VS1000)
+%				\item Capteur de proximité (Baumer CFDK 30N3600)
+%				\item Capteur chimique (Membrapor CO/C-200)
+%				\item Capteur optique (Hamamatsu S-4251)
+%			\end{itemize}
 		
 		
+%	\section*{Lexique}
+%	
+%		\begin{description}
+%		
+%			\item [Résolution de mesure:] plus petite variation du mesurande que l'on peut détecter (1 quantum = 1 digit = 1 LSB)
+%		\end{description}
+		
+\end{flushleft}
+\end{multicols}
 \end{document}
